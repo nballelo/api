@@ -23,15 +23,15 @@ public class JSONService {
     @GET
     @Path("/got/{id}")
     @Produces(MediaType.APPLICATION_JSON)
-    public User getList(@PathParam("id") int id){
-        System.out.println("asdfgh");
-        return users.get(id);
+    public List<User> getList(@PathParam("id") int id){
+        List<User>a=new ArrayList<User>();
+        a.add(users.get(id));
+        return a;
     }
     @POST
     @Path("/set")
     @Produces(MediaType.TEXT_PLAIN)
     public Response setUser(User user){
-        System.out.println("dsadas");
         String result = "Usuario : " + user;
         return Response.status(201).entity(result).build();
     }
@@ -39,7 +39,6 @@ public class JSONService {
     @Path("/set1")
     @Produces(MediaType.APPLICATION_JSON)
     public User setUser1(User user){
-        System.out.println("dsadas");
         return user;
     }
 }

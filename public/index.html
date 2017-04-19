@@ -10,9 +10,9 @@
     <script>
         $(document).ready(function() {
             $("table").hide();
-            /*$("#btn1").click(function() {
+            $("#btn1").click(function() {
                 $("table").show();
-                var nombre = $("#nombre").val();
+                /* var nombre = $("#nombre").val();
                 $.get("http://localhost:8080/myapp/json/got/"+nombre, function (responseText) {
                     console.log(responseText);
                     $("#res").text(responseText);
@@ -20,18 +20,36 @@
                     $("#2").append(responseText,responseText.correo);
 
 
+                });*/
+            $.get("http://localhost:8080/myapp/json/got/0",
+                function (json) {
+                    var tr;
+                    console.log(json);
+                    for (var i = 0; i < json.length; i++) {
+                        tr = $('<tr/>');
+                        tr.append("<td>" + json[i].name + "</td>");
+                        tr.append("<td>" + json[i].correo + "</td>");
+                        $("table").append(tr);
+                    }
                 });
-            });*/
-            $("#btn3").click(function() {
+            });
+
+            /*$("#btn3").click(function() {
                 $("table").show();
-                $.post("http://localhost:8080/myapp/json/set1",JSON.stringify({name: "bruno",correo: "brunolachupa"}), function (responseText) {
-                    console.log(responseText);
-                    $("table").show();
+                var o={"name": "bruno","correo": "brunomail"};
+                $.ajax({
+                type:"POST",
+                url:"/myapp/json/set1",
+                contentType:"application/json",
+                dataType:"json",
+                data:JSON.stringify(o),
+                success: function(responseText) {
                     console.log(responseText);
                     $("#1").append(responseText, responseText.name);
                     $("#2").append(responseText, responseText.correo);
-                });
+                }
             });
+        });*/
         });
         //function llenarTabla() {}
     </script>
